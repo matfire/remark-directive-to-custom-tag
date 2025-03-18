@@ -5,7 +5,7 @@ import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
 import rehypeStringify from "rehype-stringify"
 import remarkDirective from "remark-directive"
-import remarkDirectiveToCustomTag from "../src/index"
+import remarkDirectiveToCustomTag from "../src/index.js"
 import { type } from "arktype"
 
 
