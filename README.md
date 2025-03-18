@@ -1,6 +1,6 @@
 # remark-directive-to-custom-tag
 
-![NPM Version](https://img.shields.io/npm/v/matfire/remark-directive-to-custom-tag)
+![NPM Version](https://img.shields.io/npm/v/%40matfire%2Fremark-directive-to-custom-tag?style=for-the-badge)
 
 > A remark extension to automatically parse markdown directives into specified tags while preserving all the provided attributes
 
