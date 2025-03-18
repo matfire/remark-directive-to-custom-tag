@@ -38,6 +38,7 @@ describe("schema validation for attributes", () => {
 				})
 			}]
 		}).use(remarkRehype).use(rehypeStringify).process(file)
-		expect(processed.messages.pop().fatal).toBe(true)
+		expect(processed.messages.length).toBe(1)
+		expect(processed.messages.pop()!.fatal).toBe(true)
 	})
 })

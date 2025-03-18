@@ -3,6 +3,7 @@ import type { Transformer } from "unified"
 import { visit } from "unist-util-visit"
 import { Options } from "./options"
 import { log } from "./utils"
+import validate from "./validation"
 
 const remarkDirectiveToCustomTag = (options: Options): Transformer<Root> => {
 	return async function(tree: Root, file) {
@@ -20,12 +21,7 @@ const remarkDirectiveToCustomTag = (options: Options): Transformer<Root> => {
 				}
 				const data = node.data || (node.data = {})
 				const attributes = node.attributes || {}
-				if (element.validator) {
-					const result = await element.validator["~standard"].validate(attributes)
-					if (result.issues) {
-						file.fail(result.issues)
-					}
-				}
+				await validate(file, element, attributes)
 				data.hName = element.tagName
 				data.hProperties = { ...attributes }
 			}
