@@ -6,7 +6,7 @@ export interface Options {
 }
 
 
-interface DirectiveAssociation {
+export interface DirectiveAssociation {
 	type: 'containerDirective' | 'leafDirective' | 'textDirective';
 	directiveName: string;
 	tagName: string;
