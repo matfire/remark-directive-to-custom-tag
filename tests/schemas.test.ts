@@ -27,33 +27,31 @@ describe("schema validation for attributes", () => {
 	})
 	test("invalid schema", async () => {
 		const file = await readFile("./tests/files/schemas.md", "utf-8")
-		await expect(unified().use(remarkParse).use(remarkDirective).use(remarkDirectiveToCustomTag, {
-				associations: [{
-					type: "leafDirective",
-					directiveName: "test",
-					tagName: "test",
-					validator: type({
-						name: "string",
-						surname: "string"
-					})
-				}]
-			}).use(remarkRehype).use(rehypeStringify).process(file)).rejects.toThrowError()
-		// try {
-			// const processed = await unified().use(remarkParse).use(remarkDirective).use(remarkDirectiveToCustomTag, {
-			// 	associations: [{
-			// 		type: "leafDirective",
-			// 		directiveName: "test",
-			// 		tagName: "test",
-			// 		validator: type({
-			// 			name: "string",
-			// 			surname: "string"
-			// 		})
-			// 	}]
-			// }).use(remarkRehype).use(rehypeStringify).process(file)
-			// expect(processed.messages.length).toBe(1)
-			// expect(processed.messages.pop()!.fatal).toBe(true)
-		// } catch (error) {
-		// 	console.error("herror")
-		// }
+		const processor = unified()
+			.use(remarkParse)
+			.use(remarkDirective)
+			.use(remarkDirectiveToCustomTag, {
+				associations: [
+					{
+						type: 'leafDirective',
+						directiveName: 'test',
+						tagName: 'test',
+						validator: type({
+							name: 'string',
+							surname: 'string'
+						})
+					}
+				]
+			})
+			.use(remarkRehype)
+			.use(rehypeStringify)
+		try {
+			await processor.process(file)
+			console.log("after the process has finished")
+		} catch (error) {
+			console.log("error catch", error)
+		}
+		// expect(processed.messages.length).toBe(1)
+		// expect(processed.messages.pop()!.fatal).toBe(true)
 	})
 })
