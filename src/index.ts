@@ -21,9 +21,11 @@ const remarkDirectiveToCustomTag = (options: Options): Transformer<Root> => {
 				}
 				const data = node.data || (node.data = {})
 				const attributes = node.attributes || {}
-				await validate(file, element, attributes)
-				data.hName = element.tagName
-				data.hProperties = { ...attributes }
+				const valid = await validate(file, element, attributes)
+				if (valid) {
+					data.hName = element.tagName
+					data.hProperties = { ...attributes }
+				}
 			}
 		})
 	}

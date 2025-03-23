@@ -45,13 +45,8 @@ describe("schema validation for attributes", () => {
 			})
 			.use(remarkRehype)
 			.use(rehypeStringify)
-		try {
-			await processor.process(file)
-			console.log("after the process has finished")
-		} catch (error) {
-			console.log("error catch", error)
-		}
-		// expect(processed.messages.length).toBe(1)
-		// expect(processed.messages.pop()!.fatal).toBe(true)
+			const processed = await processor.process(file)
+			expect(processed.messages.length).toBe(1)
+			expect(processed.messages.pop()!.reason).toBe("validation failed for element test, element will not be converted")
 	})
 })

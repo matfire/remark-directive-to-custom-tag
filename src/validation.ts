@@ -5,10 +5,12 @@ export default async function validate(file:VFile, association: DirectiveAssocia
     if (association.validator) {
         const result = await association.validator["~standard"].validate(attributes)
         if (result.issues) {
-            file.fail(`validation failed for element ${association.directiveName}`, {
+            file.info(`validation failed for element ${association.directiveName}, element will not be converted`, {
                 source: "@matfire/remark-directive-to-custom-tag",
                 cause: new Error(result.issues.join(", "))
             })
+            return false
         }
     }
+    return true
 }
