@@ -40,7 +40,7 @@ The configuration options are structured as such:
             type: string; // can be either "containerDirective", "leafDirective" or "textDirective"; check the remark-directive documentation to learn more
             directiveName: string; // the name of the directive you want to select. To target a directive written like ::youtube, you would write here 'youtube'
             tagName: string; // the name of the output node tag (here I personally use webcomponents, but you do you),
-            validator?: StadardSchema // optional validator. Accepts any library implementing the StandardSchema specification (includind zod, arktype and more) 
+            validator?: StandardSchema // optional validator. Accepts any library implementing the StandardSchema specification (includind zod, arktype and more) 
         }
     ]
 }
