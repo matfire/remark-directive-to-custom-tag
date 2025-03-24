@@ -46,4 +46,28 @@ The configuration options are structured as such:
 }
 ```
 
+## Using Validators
 
+Since version 0.1.0, you can provide a `validator` object/function. This validator uses the [StandardSchema](https://standardschema.dev/) and thus supports all validation libraries implementing said interface (including zod, arktype, valibot etc).
+
+Here's an example (taken from the tests for this package) that uses arktype to define a validator:
+
+```ts
+import { type } from "arktype"
+
+//the rest of your unified process would go here
+.use(remarkDirectiveToCustomTag, {
+    associations: [
+        {
+            type: 'leafDirective',
+            directiveName: 'test',
+            tagName: 'test',
+            validator: type({ // the import bit is here
+                name: 'string',
+                surname: 'string'
+            })
+        }
+    ]
+})
+
+```
