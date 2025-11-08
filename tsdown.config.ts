@@ -1,0 +1,13 @@
+import { defineConfig } from 'tsdown'
+
+export default defineConfig({
+  entry: ['src/index.ts'],
+  format: ['esm'],
+  outDir: 'dist',
+  dts: true,
+  clean: true,
+  minify: false,
+  treeshake: true,
+  platform: 'node',
+  target: 'es2016',
+})

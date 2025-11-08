@@ -2,12 +2,16 @@
   "name": "@matfire/remark-directive-to-custom-tag",
   "version": "0.1.0",
   "type": "module",
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "vitest",
-    "build": "rollup -c rollup.config.mjs",
+    "build": "tsdown",
     "prepublish": "npm run build"
   },
   "keywords": [
@@ -29,16 +33,13 @@
   },
   "homepage": "https://github.com/matfire/remark-directive-to-custom-tag",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^28.0.3",
-    "@rollup/plugin-node-resolve": "^16.0.1",
-    "@rollup/plugin-typescript": "^12.1.2",
     "@types/mdast": "^4.0.4",
     "@types/node": "^22.13.10",
     "mdast": "^2.3.2",
     "rehype-stringify": "^10.0.1",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.1",
-    "rollup": "^4.36.0",
+    "tsdown": "^0.16.0",
     "tslib": "^2.8.1",
     "typescript": "^5.8.2",
     "unified": "^11.0.5",
